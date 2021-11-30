@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DustTrail : MonoBehaviour
@@ -9,7 +6,7 @@ public class DustTrail : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
             dustTrail.Play();
         }
@@ -17,7 +14,7 @@ public class DustTrail : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
             dustTrail.Stop();
         }

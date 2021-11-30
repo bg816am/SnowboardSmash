@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,8 +5,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float torqueAmount = 1;
     [SerializeField] private float boostSpeed = 30f;
     [SerializeField] private float baseSpeed = 20f;
+    
     Rigidbody2D _rb2d;
-    private bool canMove = true;
+    
+    private bool _canMove = true;
 
     private SurfaceEffector2D _surfaceEffector2D;
     // Start is called before the first frame update
@@ -21,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (canMove)
+        if (_canMove)
         {
             RotatePlayer();
             RespondToBoost(); 
@@ -31,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public void DisableControls()
     {
-        canMove = false;
+        _canMove = false;
     }
 
     private void RespondToBoost()

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +7,7 @@ public class FinishLine : MonoBehaviour
     [SerializeField] private ParticleSystem victory;
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             victory.Play();
             Invoke("ReloadScene", delayTime);

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,13 +8,20 @@ public class CrashDetector : MonoBehaviour
     [SerializeField] private ParticleSystem crash;
     [SerializeField] private AudioClip crashSfx;
     
+    private bool _soundPlayed = false;
+    
   void OnTriggerEnter2D(Collider2D other) 
   {
-      if (other.tag == "Ground")
+      if (other.CompareTag("Ground"))
       {
           FindObjectOfType<PlayerController>().DisableControls();
-          crash.Play();
-          GetComponent<AudioSource>().PlayOneShot(crashSfx);
+          if (!_soundPlayed)
+          {
+              crash.Play();
+              GetComponent<AudioSource>().PlayOneShot(crashSfx);
+              _soundPlayed = true;
+          }
+          
           Invoke("ReloadScene", loadDelay);
       }
   }
